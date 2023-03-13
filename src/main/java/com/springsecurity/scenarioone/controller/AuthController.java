@@ -1,5 +1,7 @@
 package com.springsecurity.scenarioone.controller;
 
+import com.springsecurity.scenarioone.exception.CustomApiException;
+import com.springsecurity.scenarioone.exception.ErrorCodes;
 import com.springsecurity.scenarioone.model.LoginDto;
 import com.springsecurity.scenarioone.config.JwtTokenUtils;
 import com.springsecurity.scenarioone.model.CustomResponse;
@@ -26,7 +28,7 @@ class AuthController {
             String jwtToken = jwtTokenUtils.generate(username);
             return CustomResponse.successMsg(jwtToken);
         } catch (BadCredentialsException e) {
-            return CustomResponse.errorMsg("Password or username is wrong");
+            throw new CustomApiException("Check your username or password", ErrorCodes.CUSTOMIZED_ERROR_CODE);
         }
     }
 

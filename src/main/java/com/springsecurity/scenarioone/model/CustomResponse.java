@@ -11,6 +11,7 @@ public class CustomResponse {
     private String message;
     private Boolean success;
     private Object data;
+    private Object error;
 
     public static CustomResponse successMsg() {
         return CustomResponse
@@ -29,12 +30,12 @@ public class CustomResponse {
                 .build();
     }
 
-    public static CustomResponse errorMsg(Object data) {
+    public static CustomResponse errorMsg(Object error) {
         return CustomResponse
                 .builder()
                 .message("error")
                 .success(false)
-                .data(data)
+                .error(error)
                 .build();
     }
 }
